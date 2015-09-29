@@ -27,21 +27,38 @@ describe("Thermostat", function() {
     });
 
   it("has a minimum temperature of 10C", function() {
-    expect(thermostat.tempMin).toEqual(10);
+    expect(thermostat.minTemp).toEqual(10);
   });
 
   it("cannot go below minimum temperature", function() {
     for (var i = 20; i >= minTemp + 1; i--) {
       thermostat.decreaseByOne();
-      // console.log(i);
-      console.log(thermostat);
     }
     expect(function() {
       thermostat.decreaseByOne();
     }).toThrowError("Minimum temperature reached");
   });
-  // expect(function() { thermostat.decreaseByOne.toThrowError("Minimum temperature reached");
-  //   });
-  // });
-  // console.log(thermostat.temp);
+
+  it("has a power saving mode which is on by default", function() {
+    expect(thermostat.powerSavingMode).toBe(true);
+  });
+
+  it("power saving mode can be turned off", function() {
+    thermostat.turnOffPowerSavingMode();
+    expect(thermostat.powerSavingMode).toBe(false);
+  });
+
+  it("power saving mode can be turned on", function() {
+    thermostat.turnOnPowerSavingMode();
+    expect(thermostat.powerSavingMode).toBe(true);
+  });
+
+  it("if power saving mode is on, the maximum temperature is 25 degrees", function() {
+    for (var i = 20; i >= minTemp + 5; i--) {
+      thermostat.increaseByOne();
+    }
+    expect(function() {
+      thermostat.increaseByOne();
+    }).toThrowError("Power Saving Mode on, maximum temperature reached");
+  });
 });
