@@ -9,5 +9,12 @@ Thermostat.prototype.increaseByOne = function() {
 };
 
 Thermostat.prototype.decreaseByOne = function() {
-  this.temp -= 1;
+  if (this.temp <= this.tempMin) {
+    throw new Error("Minimum temperature reached");
+  } else {
+    console.log(this.temp)
+    this.temp -= 1;
+
+  }
+
 };
