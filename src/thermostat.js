@@ -1,6 +1,7 @@
 function Thermostat() {
   this.temp = 20;
-};
+  this.tempMin = 10;
+}
 
 Thermostat.prototype.increaseByOne = function() {
   console.log(Thermostat.prototype);
@@ -8,7 +9,5 @@ Thermostat.prototype.increaseByOne = function() {
 };
 
 Thermostat.prototype.decreaseByOne = function() {
-  console.log(Thermostat);
   this.temp -= 1;
-  console.log(Thermostat.prototype);
 };

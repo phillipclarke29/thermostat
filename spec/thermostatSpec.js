@@ -21,4 +21,27 @@ describe("Thermostat", function() {
     thermostat.decreaseByOne();
     expect(thermostat.temp).toEqual(19);
   });
+
+  it("has a minimum temperature of 10C", function() {
+    expect(thermostat.tempMin).toEqual(10);
+});
+
+  it("cannot go below minimum temperature", function() {
+    thermostat.decreaseByOne();
+    thermostat.decreaseByOne();
+    thermostat.decreaseByOne();
+    thermostat.decreaseByOne();
+    thermostat.decreaseByOne();
+    thermostat.decreaseByOne();
+    thermostat.decreaseByOne();
+    thermostat.decreaseByOne();
+    thermostat.decreaseByOne();
+    expect(function() {
+      thermostat.decreaseByOne();
+    }).toThrowError("Minimum temperature reached");
+  });
+  // expect(function() { thermostat.decreaseByOne.toThrowError("Minimum temperature reached");
+  //   });
+  // });
+  console.log(thermostat.temp);
 });
