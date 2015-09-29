@@ -11,11 +11,14 @@ describe("Thermostat", function() {
 
   });
 
-  it("should increase the temperature when the increase button in pushed",
+  it("should increase the temperature by one when the increase button is pushed",
     function() {
       thermostat.increaseByOne();
       expect(thermostat.temp).toEqual(21);
-
-
     });
+
+  it("should decrease the temperature by one when the decrease button is pushed", function() {
+    thermostat.decreaseByOne();
+    expect(thermostat.temp).toEqual(19);
+  });
 });
