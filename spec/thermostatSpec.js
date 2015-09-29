@@ -39,6 +39,10 @@ describe("Thermostat", function() {
     }).toThrowError("Minimum temperature reached");
   });
 
+  it("has a maximum temperature of 32C", function() {
+    expect(thermostat.maxTemp).toEqual(32);
+  });
+
   it("has a power saving mode which is on by default", function() {
     expect(thermostat.powerSavingMode).toBe(true);
   });
@@ -54,9 +58,10 @@ describe("Thermostat", function() {
   });
 
   it("if power saving mode is on, the maximum temperature is 25 degrees", function() {
-    for (var i = 20; i >= minTemp + 5; i--) {
+    for (var i = 20; i >= powerSavingModeMax + 1; i++) {
       thermostat.increaseByOne();
     }
+    console.log(i);
     expect(function() {
       thermostat.increaseByOne();
     }).toThrowError("Power Saving Mode on, maximum temperature reached");
