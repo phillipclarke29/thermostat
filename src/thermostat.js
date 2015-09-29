@@ -7,9 +7,10 @@ function Thermostat() {
 }
 // && this.temp >= this.powerSavingModeMax)
 Thermostat.prototype.increaseByOne = function() {
-  if (this.powerSavingMode === false) {
-    throw new Error ("Power Saving Mode on, maximum temperature reached");
+  if (this.powerSavingMode === true && this.temp >= this.powerSavingModeMax) {
+    throw new Error("Power Saving Mode on, maximum temperature reached");
   } else {
+    console.log(this.temp)
     this.temp += 1;
   }
 };
@@ -22,10 +23,10 @@ Thermostat.prototype.decreaseByOne = function() {
   }
 };
 
-Thermostat.prototype.turnOffPowerSavingMode  = function() {
+Thermostat.prototype.turnOffPowerSavingMode = function() {
   this.powerSavingMode = false;
 };
 
-Thermostat.prototype.turnOnPowerSavingMode  = function() {
+Thermostat.prototype.turnOnPowerSavingMode = function() {
   this.powerSavingMode = true;
 };
