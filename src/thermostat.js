@@ -7,7 +7,7 @@ function Thermostat() {
 }
 
 Thermostat.prototype.increaseByOne = function() {
-  if (this.temp === this.powerSavingModeMax) {
+  if (this.powerSavingMode && this.temp === this.powerSavingModeMax) {
     throw new Error("Power Saving Mode on, maximum temperature reached");
   } else {
     this.temp += 1;
