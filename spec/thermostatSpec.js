@@ -63,10 +63,10 @@ describe("Thermostat", function() {
     "when power saving mode is turned on and the temperature is greater than the max temp permitted it is lowered",
     function() {
       thermostat.turnOffPowerSavingMode();
-      for (var i = 20; i <= powerSavingModeMax + 1; i++) {
+      for (var i = 20; i <= powerSavingModeMax + 3; i++) {
         thermostat.increaseByOne();
       }
-      thermostat.turnOnpowerSavingMode();
+      thermostat.turnOnPowerSavingMode();
       expect(thermostat.temp).toEqual(powerSavingModeMax);
     });
 
@@ -94,5 +94,10 @@ describe("Thermostat", function() {
         "Power Saving Mode off, maximum temperature reached");
     });
 
+  it("resets to 20 when the reset button is pushed",
+    function() {
+      thermostat.resetButton();
+      expect(thermostat.temp).toEqual(20);
+    });
 
 });
