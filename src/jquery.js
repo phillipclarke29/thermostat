@@ -23,14 +23,12 @@ $(document).ready(function()
       }
       $('#output').html(therm.temp);
     });
-    // };
 
-    // $("#powerSave").click(function() {
-    //    .toggle(therm.turnOffPowerSavingMode)
-    // });
-    //     therm.turnOnPowerSavingMode();
-    // else
-    //     therm.turnOffPowerSavingMode();
+    $('#reset').click(function() {
+      therm.resetButton();
+      $('#output').html(therm.temp);
+    });
+
 
 
   });
