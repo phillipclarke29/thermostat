@@ -3,15 +3,31 @@ $(document).ready(function()
   {
     therm = new Thermostat();
 
+    $('#output').css('color', 'gold');
     $('#output').html(therm.temp);
+
 
     $('#temp_up').click(function() {
       therm.increaseByOne();
+      if (therm.temp < 18 ) {
+        $('#output').css('color', 'green');
+    } else if (therm.temp  >= 18 && therm.temp < 25) {
+        $('#output').css('color', 'gold');
+    } else {
+        $('#output').css('color', 'red');
+    }
       $('#output').html(therm.temp);
     });
 
     $('#temp_down').click(function() {
       therm.decreaseByOne();
+      if (therm.temp < 18 ) {
+        $('#output').css('color', 'green');
+    } else if (therm.temp  >= 18 && therm.temp < 25) {
+        $('#output').css('color', 'gold');
+    } else {
+        $('#output').css('color', 'red');
+    }
       $('#output').html(therm.temp);
     });
 
@@ -27,8 +43,23 @@ $(document).ready(function()
     $('#reset').click(function() {
       therm.resetButton();
       $('#output').html(therm.temp);
+      $('#output').css('color', 'gold')
     });
+    //
+    //   if (therm.temp < 18 ) {
+    //     $('#output').css('color', 'red');
+    //     $('#output').html(therm.temp);
+    // } else if (therm.temp  > 18 ) {
+    //     $('#output').css('color', 'green');
+    //    $('#output').html(therm.temp);
+    //
+    // };
 
+
+
+
+
+// GET ERRORS PRINTED ON BROWSER! //
 
 
   });
