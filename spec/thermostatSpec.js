@@ -2,6 +2,7 @@ describe("Thermostat", function() {
   var temp;
   var minTemp = 10;
   var powerSavingModeMax = 25;
+  var maxTemp = 32;
 
   beforeEach(function() {
     thermostat = new Thermostat();
@@ -58,6 +59,17 @@ describe("Thermostat", function() {
     expect(thermostat.powerSavingMode).toBe(true);
   });
 
+  it(
+    "when power saving mode is turned on and the temperature is greater than the max temp permitted it is lowered",
+    function() {
+      thermostat.turnOffPowerSavingMode();
+      for (var i = 20; i <= powerSavingModeMax + 1; i++) {
+        thermostat.increaseByOne();
+      }
+      thermostat.turnOnpowerSavingMode();
+      expect(thermostat.temp).toEqual(powerSavingModeMax);
+    });
+
   it("if power saving mode is on, the maximum temperature is 25 degrees",
     function() {
       for (var i = 20; i <= powerSavingModeMax - 1; i++) {
@@ -71,12 +83,16 @@ describe("Thermostat", function() {
 
   it("if power saving mode is off, the maximum temperature is 32 degrees",
     function() {
+      thermostat.turnOffPowerSavingMode();
       for (var i = 20; i <= maxTemp - 1; i++) {
         thermostat.increaseByOne();
       }
       expect(function() {
+
         thermostat.increaseByOne();
       }).toThrowError(
         "Power Saving Mode off, maximum temperature reached");
     });
+
+
 });
