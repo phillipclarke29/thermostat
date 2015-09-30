@@ -4,6 +4,7 @@ function Thermostat() {
   this.maxTemp = 32;
   this.powerSavingModeMax = 25;
   this.powerSavingMode = true;
+  // var therm = new Thermostat();
 }
 
 Thermostat.prototype.increaseByOne = function() {

@@ -1,6 +1,13 @@
-$( document ).ready(function() {
-       $( "temp_up" ).click(function( event ) {
-           alert( "The link will no longer take you to jquery.com" );
-           event.preventDefault();
-       });
-   });
+$(document).ready(function()
+
+  {
+    therm = new Thermostat();
+
+    $('#output').html(therm.temp);
+    // document.getElementById('#output')
+
+    // $('#output').html('Hello World');
+    // $('#temp_up').click(function(event) {
+    //
+    // });
+  });
