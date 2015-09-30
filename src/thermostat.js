@@ -5,15 +5,13 @@ function Thermostat() {
   this.powerSavingModeMax = 25;
   this.powerSavingMode = true;
 }
-// && this.temp >= this.powerSavingModeMax)this.powerSavingMode &&
-// if (this.temp === this.powerSavingModeMax) {
-//   throw new Error("Power Saving Mode on, maximum temperature reached");
-// } else {
+
 Thermostat.prototype.increaseByOne = function() {
-
-
-  temp += 1;
-
+  if (this.temp === this.powerSavingModeMax) {
+    throw new Error("Power Saving Mode on, maximum temperature reached");
+  } else {
+    this.temp += 1;
+  }
 };
 
 Thermostat.prototype.decreaseByOne = function() {
