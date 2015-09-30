@@ -62,7 +62,7 @@ describe("Thermostat", function() {
     function() {
       for (var i = 20; i <= powerSavingModeMax - 1; i++) {
         thermostat.increaseByOne();
-        console.log(i)
+
       }
 
       expect(function() {
