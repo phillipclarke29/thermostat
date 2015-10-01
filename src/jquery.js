@@ -3,7 +3,6 @@ $(document).ready(function()
   {
     therm = new Thermostat();
 
-
     var displayTemp = (function() {
       $('#output').html(therm.temp);
       $('#output').css('color', therm.tempColour());
@@ -16,11 +15,10 @@ $(document).ready(function()
         therm.increaseByOne();
         displayTemp();
       } catch (e) {
-        var errorMessage = e.message;
-        $('#errors').html(errorMessage);
-      } finally {
-        $('#errors').html(errorMessage);
+        errorMessage = e.message;
       }
+      $('#errors').html(errorMessage);
+      errorMessage = 'No errors';
     });
 
     $('#temp_down').click(function() {
@@ -28,11 +26,11 @@ $(document).ready(function()
         therm.decreaseByOne();
         displayTemp();
       } catch (e) {
-        var errorMessage = e.message;
-        $('#errors').html(errorMessage);
-      } finally {
+        errorMessage = e.message;
         $('#errors').html(errorMessage);
       }
+      $('#errors').html(errorMessage);
+      errorMessage = 'No errors';
     });
 
 
