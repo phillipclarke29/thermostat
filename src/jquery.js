@@ -3,6 +3,8 @@ $(document).ready(function()
   {
     therm = new Thermostat();
 
+    var errorMessage = '';
+
     var displayTemp = (function() {
       $('#output').html(therm.temp);
       $('#output').css('color', therm.tempColour());
