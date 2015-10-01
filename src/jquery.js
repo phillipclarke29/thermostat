@@ -12,6 +12,42 @@ $(document).ready(function()
 
     displayTemp();
 
+    // var myjson;
+    // $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=London,uk",
+    //   function(json) {
+    //     myjson = json;
+    //
+    //     function showWeather() {
+    //       document.getElementById("outsideTemp").innerHTML =
+    //         "The temperature in London is: " + JSON.stringify(myjson.main.temp -
+    //           273.15) + "ºC";
+    //     };
+    //
+    //     showWeather();
+    //
+    //
+    //   });
+
+    $.ajax({
+
+      type: 'GET',
+      dataType: 'json',
+      url: "http://api.openweathermap.org/data/2.5/weather?q=London,uk",
+      data: {
+        get_param: 'value'
+      },
+      success: function(data) {
+        var weather = data
+        console.log(weather.main.temp)
+
+        $('#outsideTemp').html((weather.main.temp) - 273.15);
+
+        //
+      },
+    });
+
+
+
     $('#temp_up').click(function() {
       try {
         therm.increaseByOne();
