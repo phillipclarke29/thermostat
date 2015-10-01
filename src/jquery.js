@@ -12,42 +12,6 @@ $(document).ready(function()
 
     displayTemp();
 
-    // var myjson;
-    // $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=London,uk",
-    //   function(json) {
-    //     myjson = json;
-    //
-    //     function showWeather() {
-    //       document.getElementById("outsideTemp").innerHTML =
-    //         "The temperature in London is: " + JSON.stringify(myjson.main.temp -
-    //           273.15) + "ºC";
-    //     };
-    //
-    //     showWeather();
-    //
-    //
-    //   });
-
-    $.ajax({
-
-      type: 'GET',
-      dataType: 'json',
-      url: "http://api.openweathermap.org/data/2.5/weather?q=London,uk",
-      data: {
-        get_param: 'value'
-      },
-      success: function(data) {
-        var weather = data
-        console.log(weather.main.temp)
-
-        $('#outsideTemp').html((weather.main.temp) - 273.15);
-
-        //
-      },
-    });
-
-
-
     $('#temp_up').click(function() {
       try {
         therm.increaseByOne();
@@ -84,11 +48,22 @@ $(document).ready(function()
     $('#reset').click(function() {
       therm.resetButton();
       displayTemp();
-      // $('#output').css('color', 'gold');
     });
 
-    // GET ERRORS PRINTED ON BROWSER! //
+    $('#submitCity').click(function() {
+      $.ajax({
+          type: 'GET',
+          dataType: 'json',
+          url: "http://api.openweathermap.org/data/2.5/weather?q=" + $('#myCity').val(),
+          success: function(data) {
+            if (data.cod == 200) {
+              $('#outsideTemp').html((data.main.temp.toFixed(0)) - 273);
+            } else {
+              $('#outsideTemp').html('Invalid city!');
+            }
+          }
+        });
+    });
 
   });
 // $('#powerSave').prop('checked', true) {
-//   therm.turnOnPowerSavingMode();
