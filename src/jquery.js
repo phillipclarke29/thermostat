@@ -3,42 +3,38 @@ $(document).ready(function()
   {
     therm = new Thermostat();
 
-    $('#output').css('color', 'gold');
-    $('#output').html(therm.temp);
 
+    var displayTemp = (function() {
+      $('#output').html(therm.temp);
+      $('#output').css('color', therm.tempColour());
+    });
+
+    displayTemp();
 
     $('#temp_up').click(function() {
       try {
         therm.increaseByOne();
-        if (therm.temp < 18) {
-          $('#output').css('color', 'green');
-        } else if (therm.temp >= 18 && therm.temp < 25) {
-          $('#output').css('color', 'gold');
-        } else {
-          $('#output').css('color', 'red');
-        }
-        $('#output').html(therm.temp);
+        displayTemp();
       } catch (e) {
         var errorMessage = e.message;
         $('#errors').html(errorMessage);
       } finally {
         $('#errors').html(errorMessage);
-
-
       }
     });
 
     $('#temp_down').click(function() {
-      therm.decreaseByOne();
-      if (therm.temp < 18) {
-        $('#output').css('color', 'green');
-      } else if (therm.temp >= 18 && therm.temp < 25) {
-        $('#output').css('color', 'gold');
-      } else {
-        $('#output').css('color', 'red');
+      try {
+        therm.decreaseByOne();
+        displayTemp();
+      } catch (e) {
+        var errorMessage = e.message;
+        $('#errors').html(errorMessage);
+      } finally {
+        $('#errors').html(errorMessage);
       }
-      $('#output').html(therm.temp);
     });
+
 
     $('input[type="checkbox"]').click(function() {
       if ($('#powerSave').is(':checked')) {
@@ -51,8 +47,8 @@ $(document).ready(function()
 
     $('#reset').click(function() {
       therm.resetButton();
-      $('#output').html(therm.temp);
-      $('#output').css('color', 'gold');
+      displayTemp();
+      // $('#output').css('color', 'gold');
     });
 
     // GET ERRORS PRINTED ON BROWSER! //
