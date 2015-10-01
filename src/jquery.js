@@ -6,7 +6,6 @@ $(document).ready(function()
     $('#output').css('color', 'gold');
     $('#output').html(therm.temp);
 
-
     $('#temp_up').click(function() {
       therm.increaseByOne();
       if (therm.temp < 18) {
@@ -32,9 +31,9 @@ $(document).ready(function()
     });
 
     $('input[type="checkbox"]').click(function() {
-      if ($("#powerSave").is(":checked")) {
+      if ($('#powerSave').is(':checked')) {
         therm.turnOnPowerSavingMode();
-      } else if ($("#powerSave").is(":not(:checked)")) {
+      } else if ($('#powerSave').is(':not(:checked)')) {
         therm.turnOffPowerSavingMode();
       }
       $('#output').html(therm.temp);
@@ -43,13 +42,10 @@ $(document).ready(function()
     $('#reset').click(function() {
       therm.resetButton();
       $('#output').html(therm.temp);
-      $('#output').css('color', 'gold')
+      $('#output').css('color', 'gold');
     });
 
-
-
     // GET ERRORS PRINTED ON BROWSER! //
-
 
   });
 // $('#powerSave').prop('checked', true) {
