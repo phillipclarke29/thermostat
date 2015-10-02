@@ -4,7 +4,7 @@ function Thermostat() {
   this.maxTemp = 32;
   this.powerSavingModeMax = 25;
   this.powerSavingMode = true;
-
+  // var therm = new Thermostat();
 }
 
 Thermostat.prototype.increaseByOne = function() {
@@ -44,10 +44,10 @@ Thermostat.prototype.resetButton = function() {
 
 Thermostat.prototype.tempColour = function() {
   if (this.temp < 18) {
-    return 'green';
+    return "green";
   } else if (this.temp > 18 && this.temp < 25) {
-    return 'yellow';
+    return "yellow"
   } else {
-    return 'red';
+    return "red"
   }
 };
